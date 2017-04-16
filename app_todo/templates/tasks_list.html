@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Tasks List
+{% endblock %}
+
+{% block ng_controller %}tasksListController{% endblock %}
+
+{% block body %}
+tasks list
+
+{% verbatim %}
+  <p>Name : <input type="text" ng-model="name"></p>
+  <h1>Hello {{name}}</h1>
+{% endverbatim %}
+{% endblock %}

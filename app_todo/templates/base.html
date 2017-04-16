@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block header %}
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <!-- jQuery library -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+            <!-- Latest compiled JavaScript -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+            <script src="{% static 'app/app.js' %}"></script>
+            <script src="{% static 'app/controllers.js' %}"></script>
+            <title>
+            {% block title %} Main {% endblock %} · Vacation Mode
+            </title>
+        {% endblock %}
+    </head>
+    <body ng-app="todo">
+        <div class="container">
+            <div ng-controller="{% block ng_controller %}{% endblock %}">
+            <div class="well white">
+                {% block body %}
+                base body
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
