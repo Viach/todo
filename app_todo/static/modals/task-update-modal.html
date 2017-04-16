@@ -1,0 +1,44 @@
+<div>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ng-click="close()">&times;</button>
+        <h4 class="modal-title">Edit task</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <fieldset>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">Title</label>
+                            <div class="col-sm-11">
+                                <input class="form-control" ng-model="task.title">
+                                <p class="text text-danger">{{ errors.title.join(',') }}</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">Body</label>
+                            <div class="col-sm-11">
+                                <textarea ck-editor ng-model="task.body"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">Created at</label>
+                            <div class="col-sm-11">
+                                <input type="text" uib-datepicker-popup="{{format}}" ng-model="task.created_at">{{ task.created_at }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group text-center">
+                            <button class="btn btn-success" ng-click="save()">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <p style="font-size: small" class="alert alert-success text-center" ng-show="result">{{ result }}</p>
+        <p style="font-size: small" class="alert alert-danger text-center" ng-show="error">{{ error }}</p>
+    </div>
+</div>
