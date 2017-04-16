@@ -12,8 +12,15 @@
             <!-- Latest compiled JavaScript -->
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
             <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-resource.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-animate.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular-sanitize.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
             <script src="{% static 'app/app.js' %}"></script>
             <script src="{% static 'app/controllers.js' %}"></script>
+            <script src="{% static 'app/services.js' %}"></script>
+            <script src="{% static 'app/directives.js' %}"></script>
             <title>
             {% block title %} Main {% endblock %} · Vacation Mode
             </title>
@@ -24,10 +31,11 @@
             <div ng-controller="{% block ng_controller %}{% endblock %}">
             <div class="well white">
                 {% block body %}
-                base body
+                    base body
                 {% endblock %}
             </div>
         </div>
     </div>
 </body>
+<script src="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
 </html>

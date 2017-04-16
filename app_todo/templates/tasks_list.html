@@ -1,16 +1,46 @@
 {% extends 'base.html' %}
-
 {% block title %}
     Tasks List
 {% endblock %}
-
 {% block ng_controller %}tasksListController{% endblock %}
-
 {% block body %}
-tasks list
-
-{% verbatim %}
-  <p>Name : <input type="text" ng-model="name"></p>
-  <h1>Hello {{name}}</h1>
+    <div class="page-header">
+        <h2>Tasks list</h2>
+    </div>
+    {% verbatim %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="col-md-1">Id</th>
+                <th>Title</th>
+                <th>Body</th>
+                <th><span class="pull-right">Created at</span></th>
+                <th class="col-md-2">
+                    <button type="button" ng-click="createTask()" class="btn btn-xs btn-info glyphicon glyphicon-plus-sign pull-right">
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="task in tasks">
+                <td><span class="pull-left">{{ task.id }}</span></td>
+                <td>{{ task.title }}</td>
+                <td><span ng-bind-html="trustAsHTML(task.body)"></span></td>
+                <td><span class="pull-right">{{ task.created_at | date: 'short': 'EST' }}</span></td>
+                <td>
+                    <div class="btn-toolbar" ng-show="true">
+                        <button type="button" ng-click="deleteTask(task)" class="btn btn-xs btn-danger glyphicon glyphicon-remove pull-right">
+                        </button>
+                        <button type="button" ng-click="updateTask(task)" class="btn btn-xs btn-success glyphicon glyphicon-edit pull-right">
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="">
+        <p style="font-size: small" class="alert alert-success text-center" ng-show="result">{{ result }}</p>
+        <p style="font-size: small" class="alert alert-danger text-center" ng-show="error">{{ error }}</p>
+    </div>
 {% endverbatim %}
 {% endblock %}
