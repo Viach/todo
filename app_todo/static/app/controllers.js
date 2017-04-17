@@ -112,15 +112,16 @@ todoCtrls.controller('taskUpdateController', ['$scope', '$uibModalInstance', 'ui
     $scope.save = function () {
         $scope.error = null;
         $scope.result = null;
+        $scope.task.should_do_before = $scope.task.should_do_before.split('/').reverse().join('-');        
         $scope.task.$update()
             .then(function () {
                 $scope.task = data.task;
             })
             .then(function () {
-                $scope.errors = null;
+                $scope.error = null;
                 $scope.result = 'Updated successfully';
             }, function (rejection) {
-                $scope.errors = rejection.data;
+                $scope.error = rejection.data;
             });
     }
     $scope.close = function () {
@@ -133,19 +134,19 @@ todoCtrls.controller('taskUpdateController', ['$scope', '$uibModalInstance', 'ui
 todoCtrls.controller('taskCreateController', ['$scope', '$uibModalInstance', 'uibDateParser', 'data', function ($scope, $uibModalInstance, uibDateParser, data) {
 
     $scope.task = data.task;
-    $scope.format = 'yyyy/MM/dd';
     $scope.save = function () {
         $scope.error = null;
         $scope.result = null;
+        $scope.task.should_do_before = $scope.task.should_do_before.split('/').reverse().join('-');
         $scope.task.$create()
             .then(function () {
                 $scope.task = data.task;
             })
             .then(function () {
-                $scope.errors = null;
+                $scope.error = null;
                 $scope.result = 'Created successfully';
             }, function (rejection) {
-                $scope.errors = rejection.data;
+                $scope.error = rejection.data;
             });
     }
     $scope.close = function () {

@@ -33,8 +33,9 @@
                             </div>                                                        
                             <label class="col-sm-2 control-label">Dead Line</label>
                             <div class="col-sm-4">
-                                <input type="text" uib-datepicker-popup="{{format}}" ng-model="task.should_do_before">{{ task.should_do_before }}
-                            </div>                                                    </div>
+                                  <input type="text" ng-model="task.should_do_before" datepicker />
+                            </div> 
+                        </div>
                     </div>
                     <div class="col-md-12">
                         <div class="form-group text-center">

@@ -1,5 +1,5 @@
 from django.db import models
-import django.utils.timezone
+import datetime as dt
 
 
 class Task(models.Model):
@@ -28,6 +28,6 @@ class Task(models.Model):
     body = models.TextField(blank=True, default='')
     category = models.CharField(blank=True, choices=TODO_CATEGORIES_CHOICES, default=WORK, max_length=1)
     priority = models.CharField(blank=True, choices=TODO_PRIORITIES_CHOICES, default=NORMAL, max_length=1)
-    should_do_before = models.DateTimeField(default=django.utils.timezone.now)  
+    should_do_before = models.DateField(default=dt.date.today)  
     done = models.BooleanField(blank=False, default=False)  
-    created_at = models.DateTimeField(default=django.utils.timezone.now)    
+    created_at = models.DateField(default=dt.date.today)    

@@ -64,7 +64,7 @@
                 <td><span ng-bind-html="trustAsHTML(task.body)"></span></td>
                 <td>{{ task.category_display }}</td>
                 <td>{{ task.priority_display }}</td>
-                <td><span class="pull-right">{{ task.should_do_before | date: 'short' }}</span></td>
+                <td><span class="pull-right">{{ task.should_do_before |date:'dd/MM/yyyy'}}</span></td>
                 <td>
                     <div class="btn-toolbar" ng-show="true">
                         <button type="button" ng-click="deleteTask(task)" class="btn btn-xs btn-danger glyphicon glyphicon-remove pull-right">
