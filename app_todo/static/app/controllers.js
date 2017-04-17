@@ -66,6 +66,8 @@ todoCtrls.controller('tasksListController', ['$scope', 'api', '$sce', '$uibModal
                     tasks_choices: $scope.tasks_choices               
                 }
             }
+        }).closed.then(function(){
+            $scope.getTasks();
         }); 
     };
 
@@ -85,6 +87,8 @@ todoCtrls.controller('tasksListController', ['$scope', 'api', '$sce', '$uibModal
                     task: $scope.newTask,
                 }
             }
+        }).closed.then(function(){
+            $scope.getTasks();
         });
     };
 

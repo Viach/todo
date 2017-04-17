@@ -39,7 +39,8 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group text-center">
-                            <button class="btn btn-success" ng-click="save()">Save</button>
+                            <button class="btn btn-success" ng-show="!result" ng-click="save()">Save</button>
+                            <button class="btn btn-info" ng-show="result" ng-click="close()">Close</button>
                         </div>
                     </div>
                 </div>
