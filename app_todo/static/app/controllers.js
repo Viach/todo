@@ -5,6 +5,8 @@ var todoCtrls = angular.module('todoCtrls', ['ui.bootstrap'])
 todoCtrls.controller('tasksListController', ['$scope', 'api', '$sce', '$uibModal', 
     function($scope, api, $sce, $uibModal){
     
+    $scope.hideDoneTasks = true;
+    $scope.orderTasks = true;             //  up 
     $scope.tasks_choices = api.get_tasks_choices.get({}, function(data) {
         $scope.filter_categories = {};
         for (var k in data['categories']) {
@@ -21,11 +23,27 @@ todoCtrls.controller('tasksListController', ['$scope', 'api', '$sce', '$uibModal
     $scope.getTasks = function() {
         $scope.tasks = api.tasks.query({
             filter_categories : $scope.filter_categories,
-            filter_priorities : $scope.filter_priorities
+            filter_priorities : $scope.filter_priorities,
+            filter_done_tasks : $scope.hideDoneTasks,
+            order_tasks : $scope.orderTasks
             }, function(data) {
             return data;
         });
     };    
+
+    $scope.changeOrderTasks = function () {
+        $scope.orderTasks = ($scope.orderTasks) ? false: true;    
+        $scope.getTasks();    
+    };
+
+    $scope.setTaskStatus = function(task) {
+        $scope.task = task;
+        $scope.task.done = !task.done;
+        $scope.task.$update()
+            .then(function () {
+                
+            });
+    };
 
     $scope.trustAsHTML = function (html) {
         return $sce.trustAs($sce.HTML, html);
@@ -48,7 +66,7 @@ todoCtrls.controller('tasksListController', ['$scope', 'api', '$sce', '$uibModal
                     tasks_choices: $scope.tasks_choices               
                 }
             }
-        })
+        }); 
     };
 
     $scope.createTask = function () {
@@ -67,7 +85,6 @@ todoCtrls.controller('tasksListController', ['$scope', 'api', '$sce', '$uibModal
                     task: $scope.newTask,
                 }
             }
-
         });
     };
 

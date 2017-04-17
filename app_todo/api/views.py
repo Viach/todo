@@ -1,6 +1,7 @@
 import json
 from rest_framework.generics import ListAPIView, UpdateAPIView, DestroyAPIView, CreateAPIView
 from django.http import JsonResponse
+from django.db.models import Q
 from .serializers import TaskSerializer
 from app_todo.models import Task
 
@@ -14,7 +15,14 @@ class TaskListView(ListAPIView):
         filter_categories = {i for i in filter_categories if filter_categories[i]}
         filter_priorities = json.loads(self.request.query_params.get('filter_priorities'))
         filter_priorities = {i for i in filter_priorities if filter_priorities[i]}
-        return Task.objects.filter(category__in=filter_categories, priority__in=filter_priorities)
+        filter_done_tasks = json.loads(self.request.query_params.get('filter_done_tasks'))
+        filter_done_tasks = filter_done_tasks if filter_done_tasks else None        
+        order_tasks = json.loads(self.request.query_params.get('order_tasks'))
+        order_tasks = '' if order_tasks else '-'
+        return Task.objects.filter(category__in=filter_categories, 
+                                   priority__in=filter_priorities,
+                                   ).filter(~Q(done=filter_done_tasks)
+                                   ).order_by(order_tasks + 'should_do_before')
 
 
 class TaskUpdateView(UpdateAPIView):    
