@@ -8,13 +8,33 @@
         <h2>Tasks list</h2>
     </div>
     {% verbatim %}
+    <div class="row">
+    <div class="col-md-7">
+        <div ng-repeat="(k,v) in tasks_choices.categories" class="pull-right" style="float:left; margin: 0 5px">
+            <input type="checkbox"  ng-model="filter_categories[v]" ng-click="getTasks()">
+            <label>{{ k }}</label>            
+        </div>
+    </div>
+    <div class="col-md-5 pull-right">    
+        <div class="pull-left" ng-repeat="(k,v) in tasks_choices.priorities" style="float:left; margin: 0 5px">
+            <input type="checkbox"  ng-model="filter_priorities[v]" ng-click="getTasks()">
+            <label>{{ k }}</label>            
+        </div>       
+    </div>
+    </div>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th class="col-md-1">Id</th>
                 <th>Title</th>
                 <th>Body</th>
-                <th><span class="pull-right">Created at</span></th>
+                <th>Category</th>
+                <th>Priority</th>
+                <th>
+                    <span class="pull-right">Dead Line</span>
+                    <i class="glyphicon glyphicon-triangle-top"></i>
+                    <i class="glyphicon glyphicon-triangle-bottom"></i>
+                </th>
                 <th class="col-md-2">
                     <button type="button" ng-click="createTask()" class="btn btn-xs btn-info glyphicon glyphicon-plus-sign pull-right">
                     </button>
@@ -26,7 +46,9 @@
                 <td><span class="pull-left">{{ task.id }}</span></td>
                 <td>{{ task.title }}</td>
                 <td><span ng-bind-html="trustAsHTML(task.body)"></span></td>
-                <td><span class="pull-right">{{ task.created_at | date: 'short': 'EST' }}</span></td>
+                <td>{{ task.category_display }}</td>
+                <td>{{ task.priority_display }}</td>
+                <td><span class="pull-right">{{ task.should_do_before | date: 'short' }}</span></td>
                 <td>
                     <div class="btn-toolbar" ng-show="true">
                         <button type="button" ng-click="deleteTask(task)" class="btn btn-xs btn-danger glyphicon glyphicon-remove pull-right">
