@@ -11,37 +11,38 @@ todoDirectives.directive('ckEditor', function () {
             });
             function updateModel() {
                 scope.$apply(function () {
-                ngModel.$setViewValue(ck.getData());
-            });
-        }
-        ck.on('change', updateModel);
-        ck.on('key', updateModel);
-        ck.on('dataReady', updateModel);
+                    ngModel.$setViewValue(ck.getData());
+                });
+            }
 
-        ngModel.$render = function (value) {
-            ck.setData(ngModel.$viewValue);
-        };
-    }
-};
+            ck.on('change', updateModel);
+            ck.on('key', updateModel);
+            ck.on('dataReady', updateModel);
+
+            ngModel.$render = function (value) {
+                ck.setData(ngModel.$viewValue);
+            };
+        }
+    };
 });
 
 todoDirectives.directive("datepicker", function () {
-  return {
-    restrict: "A",
-    require: "ngModel",
-    link: function (scope, elem, attrs, ngModelCtrl) {
-      var updateModel = function (dateText) {
-        scope.$apply(function () {
-          ngModelCtrl.$setViewValue(dateText);
-        });
-      };
-      var options = {
-        dateFormat: "dd/mm/yy",
-        onSelect: function (dateText) {
-          updateModel(dateText);
+    return {
+        restrict: "A",
+        require: "ngModel",
+        link: function (scope, elem, attrs, ngModelCtrl) {
+            var updateModel = function (dateText) {
+                scope.$apply(function () {
+                    ngModelCtrl.$setViewValue(dateText);
+                });
+            };
+            var options = {
+                dateFormat: "dd/mm/yy",
+                onSelect: function (dateText) {
+                    updateModel(dateText);
+                }
+            };
+            elem.datepicker(options);
         }
-      };
-      elem.datepicker(options);
     }
-  }
 });

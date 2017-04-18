@@ -4,9 +4,9 @@
 {% endblock %}
 {% block ng_controller %}tasksListController{% endblock %}
 {% block body %}
-    <div class="page-header">
+    <div class="page-header" style="margin: 0 20px">
         <div class="row">
-            <h2>Tasks list</h2>
+            <h2 class="pull-left">Tasks list</h2><h2 class="pull-right btn btn-sm btn-default" ng-click="showAbout()">About</h2>
         </div>
     </div>
     {% verbatim %}
@@ -16,69 +16,74 @@
             </button>
         </div>
         <div class="col-md-3">
-            <input type="checkbox"  ng-model="hideDoneTasks" ng-click="getTasks()">
+            <input type="checkbox" ng-model="hideDoneTasks" ng-click="getTasks()">
             <label> hide done tasks</label>
         </div>
         <div class="col-md-3">
             <div ng-repeat="(k,v) in tasks_choices.categories" class="pull-right" style="float:left; margin: 0 5px">
-                <input type="checkbox"  ng-model="filter_categories[v]" ng-click="getTasks()">
+                <input type="checkbox" ng-model="filter_categories[v]" ng-click="getTasks()">
                 <label>{{ k }}</label>
             </div>
         </div>
         <div class="col-md-5 pull-right">
             <div class="pull-left" ng-repeat="(k,v) in tasks_choices.priorities" style="float:left; margin: 0 5px">
-                <input type="checkbox"  ng-model="filter_priorities[v]" ng-click="getTasks()">
+                <input type="checkbox" ng-model="filter_priorities[v]" ng-click="getTasks()">
                 <label>{{ k }}</label>
             </div>
         </div>
     </div>
     <table class="table table-striped">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Status</th>
-                <th>Title</th>
-                <th>Body</th>
-                <th>Category</th>
-                <th>Priority</th>
-                <th>
-                    <a class="pull-right" ng-click="changeOrderTasks()" style="text-decoration:none;">Dead Line
-                        <i class="glyphicon glyphicon-triangle-top" ng-show="orderTasks"></i>
-                        <i class="glyphicon glyphicon-triangle-bottom" ng-show="!orderTasks"></i>
-                    </a>
-                </th>
-                <th class="col-md-2">
-                    <button type="button" ng-click="createTask()" class="btn btn-xs btn-info glyphicon glyphicon-plus-sign pull-right">
-                    </button>
-                </th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Status</th>
+            <th>Title</th>
+            <th>Body</th>
+            <th>Category</th>
+            <th>Priority</th>
+            <th>
+                <a class="pull-right" ng-click="changeOrderTasks()" style="text-decoration:none;">Dead Line
+                    <i class="glyphicon glyphicon-triangle-top" ng-show="orderTasks"></i>
+                    <i class="glyphicon glyphicon-triangle-bottom" ng-show="!orderTasks"></i>
+                </a>
+            </th>
+            <th class="col-md-2">
+                <button type="button" ng-click="createTask()"
+                        class="btn btn-xs btn-info glyphicon glyphicon-plus-sign pull-right">
+                </button>
+            </th>
+        </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="task in tasks">
-                <td><span class="pull-left">{{ task.id }}</span></td>
-                <td>
-                    <button ng-show="task.done" class="btn btn-xs glyphicon glyphicon-check" ng-click="setTaskStatus(task)"></button>
-                    <button ng-show="!task.done" class="btn btn-xs glyphicon glyphicon-unchecked" ng-click="setTaskStatus(task)"></button>
-                </td>
-                <td>{{ task.title }}</td>
-                <td><span ng-bind-html="trustAsHTML(task.body)"></span></td>
-                <td>{{ task.category_display }}</td>
-                <td>{{ task.priority_display }}</td>
-                <td><span class="pull-right">{{ task.should_do_before |date:'dd/MM/yyyy'}}</span></td>
-                <td>
-                    <div class="btn-toolbar" ng-show="true">
-                        <button type="button" ng-click="deleteTask(task)" class="btn btn-xs btn-danger glyphicon glyphicon-remove pull-right">
-                        </button>
-                        <button type="button" ng-click="updateTask(task)" class="btn btn-xs btn-success glyphicon glyphicon-edit pull-right">
-                        </button>
-                    </div>
-                </td>
-            </tr>
+        <tr ng-repeat="task in tasks">
+            <td><span class="pull-left">{{ task.id }}</span></td>
+            <td>
+                <button ng-show="task.done" class="btn btn-xs glyphicon glyphicon-check"
+                        ng-click="setTaskStatus(task)"></button>
+                <button ng-show="!task.done" class="btn btn-xs glyphicon glyphicon-unchecked"
+                        ng-click="setTaskStatus(task)"></button>
+            </td>
+            <td>{{ task.title }}</td>
+            <td><span ng-bind-html="trustAsHTML(task.body)"></span></td>
+            <td>{{ task.category_display }}</td>
+            <td>{{ task.priority_display }}</td>
+            <td><span class="pull-right">{{ task.should_do_before |date:'dd/MM/yyyy'}}</span></td>
+            <td>
+                <div class="btn-toolbar" ng-show="true">
+                    <button type="button" ng-click="deleteTask(task)"
+                            class="btn btn-xs btn-danger glyphicon glyphicon-remove pull-right">
+                    </button>
+                    <button type="button" ng-click="updateTask(task)"
+                            class="btn btn-xs btn-success glyphicon glyphicon-edit pull-right">
+                    </button>
+                </div>
+            </td>
+        </tr>
         </tbody>
     </table>
     <div class="">
         <p style="font-size: small" class="alert alert-success text-center" ng-show="result">{{ result }}</p>
         <p style="font-size: small" class="alert alert-danger text-center" ng-show="error">{{ error }}</p>
     </div>
-{% endverbatim %}
+    {% endverbatim %}
 {% endblock %}
