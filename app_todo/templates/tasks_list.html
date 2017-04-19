@@ -15,7 +15,7 @@
             <button type="button" ng-click="getTasks()" class="btn btn-xs btn-info glyphicon glyphicon-refresh">
             </button>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
             <input type="checkbox" ng-model="hideDoneTasks" ng-click="getTasks()">
             <label> hide done tasks</label>
         </div>
@@ -35,19 +35,19 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Id</th>
-            <th>Status</th>
-            <th>Title</th>
-            <th>Body</th>
-            <th>Category</th>
-            <th>Priority</th>
-            <th>
+            <th class="col-md-1">Id</th>
+            <th class="col-md-1">Status</th>
+            <th class="col-md-2">Title</th>
+            <th class="col-md-4">Body</th>
+            <th class="col-md-1">Category</th>
+            <th class="col-md-1">Priority</th>
+            <th class="col-md-1">
                 <a class="pull-right" ng-click="changeOrderTasks()" style="text-decoration:none;">Dead Line
                     <i class="glyphicon glyphicon-triangle-top" ng-show="orderTasks"></i>
                     <i class="glyphicon glyphicon-triangle-bottom" ng-show="!orderTasks"></i>
                 </a>
             </th>
-            <th class="col-md-2">
+            <th class="col-md-1">
                 <button type="button" ng-click="createTask()"
                         class="btn btn-xs btn-info glyphicon glyphicon-plus-sign pull-right">
                 </button>
