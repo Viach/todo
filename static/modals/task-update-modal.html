@@ -1,0 +1,56 @@
+<div>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ng-click="close()">&times;</button>
+        <h4 class="modal-title">Edit task</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal">
+            <fieldset>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">Title</label>
+                            <div class="col-sm-11">
+                                <input class="form-control" ng-model="task.title">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1 control-label">Body</label>
+                            <div class="col-sm-11">
+                                <textarea ck-editor ng-model="task.body"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group pull-right">
+                            <label class="col-sm-1 control-label">Category</label>
+                            <div class="col-sm-2">
+                                <select class="form-control" ng-model="task.category"
+                                        ng-options="k for (k,v) in tasks_choices.categories">
+                                </select>
+                            </div>
+                            <label class="col-sm-1 control-label">Priority</label>
+                            <div class="col-sm-2">
+                                <select class="form-control" ng-model="task.priority"
+                                        ng-options="k for (k,v) in tasks_choices.priorities">
+                                </select>
+                            </div>
+                            <label class="col-sm-2 control-label">Dead Line</label>
+                            <div class="col-sm-4">
+                                <input type="text" ng-model="task.should_do_before" datepicker/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group text-center">
+                            <button class="btn btn-success" ng-show="!result" ng-click="save()">Save</button>
+                            <button class="btn btn-info" ng-show="result" ng-click="close()">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <p style="font-size: small" class="alert alert-success text-center" ng-show="result">{{ result }}</p>
+        <p style="font-size: small" class="alert alert-danger text-center" ng-show="error">{{ error }}</p>
+    </div>
+</div>
