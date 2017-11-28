@@ -24,7 +24,7 @@ SECRET_KEY = '^x!*c$c_f5*53^k%*lxqctkh4@!=&+9yj%o97ezkv&00yoyz&1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'todo.tuzik', 'todo.debos.net']
 
 # Application definition
 
