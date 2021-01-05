@@ -8,4 +8,4 @@ djangorestframework==3.6.2
 pytz==2017.2
 ```
 
-Demo: http://todo.debos.net
+
